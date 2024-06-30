@@ -1,0 +1,26 @@
+.App {
+    height: 100vh;
+    width: 100%;
+    background-color: #F3F7EC;
+    
+    .content {
+        display: flex;
+        max-width: 1920px;
+        margin: 0 auto;
+        height: 85%;
+        // background-color: green;
+        gap: 5rem;
+        
+        .ads {
+            width: 150px;
+            background-color: gray;
+            visibility: hidden;
+        }
+    
+        main {
+            flex: 1;
+            min-width: 1000px;
+        }
+    }
+}
+

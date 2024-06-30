@@ -1,0 +1,18 @@
+header {
+    background-color: #F3F7EC;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: antiquewhite;
+    margin-bottom: 1rem;
+    a {
+        font-size: 3.2rem;
+        color: #006989;
+        font-weight: bold;
+    }
+    a:hover {
+
+        color: #005C78;
+    }
+}
