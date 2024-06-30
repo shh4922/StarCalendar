@@ -1,10 +1,12 @@
 import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import calendarReducer from "./calendar"
+import regionReducer from "./region"
 
 const store = configureStore({
     reducer: {
-        calendar: calendarReducer
+        calendar: calendarReducer,
+        region: regionReducer
     },
   })
 

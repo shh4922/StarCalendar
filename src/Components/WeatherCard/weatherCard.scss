@@ -1,5 +1,23 @@
 .weatherCard {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-bottom: 2rem;
+    
+    .date {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .weatherContent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 1rem;
+        .weather {
+            p {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+        }
+
+    }
 }

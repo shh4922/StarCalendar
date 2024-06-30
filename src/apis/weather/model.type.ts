@@ -25,3 +25,8 @@ export interface Item {
     "ny": number
 }
 
+export interface ClassifiedData {
+    [date: string]: {
+        [time: string]: Item[];
+    };
+}

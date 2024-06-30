@@ -21,64 +21,12 @@ function Index() {
     const dispatch = useAppDispatch<AppDispatch>()
     const year = useSelector((state: RootState) => state.calendar.year);
     const month = useSelector((state: RootState) => state.calendar.month);
-
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-    const cities = [...new Set(regionData.region.map(item => item.city))];
-    const [selectedCity, setSelectedCity] = useState('');
-    const [selectedDistrict, setSelectedDistrict] = useState('')
-    const [selectedCoordinates, setSelectedCoordinates] = useState<{ x: number, y: number } | null>(null)
-    const [districts, setDistricts] = useState<string[]>([]);
-
-    const [fD, setFD] = useState<ClassifiedData>({})
-
-    const categoriesToFilter = ["TMP", "SKY", "POP", "PTY", "PCP", "SNO"];
-
-    // useEffect(() => {
-    //     fetchWeather()
-
-    // }, [selectedCoordinates])
-
-    
-
-    function filterWeather(datas: WeatherResponse) {
-        const filteredData = datas.response.body.items.item.filter(item => categoriesToFilter.includes(item.category));
-
-        // 날짜별로 필터링 한번
-        // 시간별로 필터링 한번
-        // 해당 시간에있는, 날씨, 온도, 강수, 눈여부등 체그하여 리턴
-        const classifiedData: ClassifiedData = {};
-
-        filteredData.forEach(item => {
-            if (!classifiedData[item.fcstDate]) {
-                classifiedData[item.fcstDate] = {};
-            }
-            if (!classifiedData[item.fcstDate][item.fcstTime]) {
-                classifiedData[item.fcstDate][item.fcstTime] = [];
-            }
-            classifiedData[item.fcstDate][item.fcstTime].push(item);
-        });
-
-        // 각 날짜에 대해 시간별로 정렬
-        for (const date in classifiedData) {
-            const times = Object.keys(classifiedData[date]).sort();
-            const sortedDataByTime: { [time: string]: Item[] } = {};
-            times.forEach(time => {
-                sortedDataByTime[time] = classifiedData[date][time];
-            });
-            classifiedData[date] = sortedDataByTime;
-        }
-
-        setFD(classifiedData)
-        // console.log(Object.keys(classifiedData))
-        // return classifiedData;
-    }
-
     const createCalendarGrid = () => {
         let days = [];
-
+        
         // 이전달의 총 일수
         const prevDaysInMonth = new Date(year, month, 0).getDate();
 
