@@ -1,5 +1,11 @@
 import { Item } from "../../Model/WeatherResponse";
 import "./weatherCard.scss"
+import sun from "../../assets/WeatherImg/sun.png"
+import cloud from "../../assets/WeatherImg/cloud.png"
+import clouds from "../../assets/WeatherImg/clouds.png"
+import rain from "../../assets/WeatherImg/rain.png"
+import snow from "../../assets/WeatherImg/snow.png"
+import snowAndRain from "../../assets/WeatherImg/snowAndRain.png"
 
 /**
  * SKY: 하늘상태 (1: 맑음, 3: 구름많음, 4: 흐림)
@@ -7,30 +13,53 @@ import "./weatherCard.scss"
  * REH: 습도 %
  * WSD: 풍속 m/s
  */
+
 interface WeatherCardProps {
     fcstDate: string;
     weatherData: { [time: string]: Item[] };
 }
 
-const renderWeatherItem = (item: {category: string, fcstValue: string}) => {
-    
-    switch (item.category) {
-        case 'SKY':
-            return <p>하늘 상태: {item.fcstValue === '1' ? '맑음' : item.fcstValue === '3' ? '구름 많음' : '흐림'}</p>;
-        case 'PTY':
-            return <p>강수 형태: {item.fcstValue === '0' ? '없음' : item.fcstValue === '1' ? '비' : item.fcstValue === '2' ? '비/눈' : '눈'}</p>;
-        case 'REH':
-            return <p>습도: {item.fcstValue}%</p>;
-        case 'T1H':
-            return <p>기온: {item.fcstValue}°C</p>;
-        // 필요한 카테고리에 대한 추가 로직을 여기에 작성
+/**
+ * 하늘상태, 강수, 습도, 풍속이 들어있는 배열 
+ * 0: 풍속
+ * 1: 하늘상태
+ * 2: 강수형태
+ * 3: 습도
+ */
+
+const renderWeatherItem2 = ( item: Item[]) => {
+    // 강수
+    switch (item[2].fcstValue) {
+        case '0':
+            if(item[1].fcstValue === '1') {
+                return <img src={sun}></img>
+            }
+            if(item[1].fcstValue === '3') {
+                return <img src={cloud}></img>
+            }
+            if(item[1].fcstValue === '4') {
+                return <img src={clouds}></img>
+            }
+            return <img src={cloud}></img>
+            break
+
+        case "1":
+            return <img src={rain}></img>
+            break
+
+        case "2":
+            return <img src={snowAndRain}></img>
+            break
+
+        case "3":
+            return <img src={snow}></img>
+            break
+        case "4":
+            return <img src={rain}></img>
+            break
         default:
-            return <p>{item.category}: {item.fcstValue}</p>;
+            return <img src={sun}></img>
     }
-}
-const renderWeatherItem2 = (item:[]) => {
-    
-    
 }
 
 /**
@@ -39,27 +68,23 @@ const renderWeatherItem2 = (item:[]) => {
  */
 const WeatherCard: React.FC<WeatherCardProps> = ({ fcstDate, weatherData }) => {
     const sortedData = Object.keys(weatherData).sort()
-    console.log(weatherData)
-    console.log(sortedData)
-    
+
     return (
         <div className="weatherCard">
             <p className="date">{fcstDate}</p>
-            
+
             <div className="weatherContent">
-                
                 {
-                    
-                    
-                    sortedData.map((fcstTime) => {
-                        
+                    sortedData.map((fcstTime,index) => {
+
                         return (
-                            <div className="weather" key={fcstTime}>
-                                <p>{fcstTime}</p>
-                                
+                            <div className="weather" key={index}>
+                                <p>{`${fcstTime.slice(0, 2)}:${fcstTime.slice(2, 4)}`}</p>
+                                {
+                                    renderWeatherItem2(weatherData[fcstTime])
+                                }
                             </div>
                         )
-                        
                     })
                 }
             </div>

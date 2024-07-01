@@ -19,7 +19,9 @@ export const calendarSlice = createSlice({
             state.year = action.payload;
         },
         increaseMonth(state) {
+            
             const newMonth = state.month + 1
+            console.log(`올리기 이전 상태 ${state.month} 올린후상태:${newMonth}`)
             if (newMonth === 12) {
                 state.month = 0
                 state.year += 1
@@ -36,11 +38,11 @@ export const calendarSlice = createSlice({
                 state.month = newMonth
             }
         },
-        setMonth(state, action: PayloadAction<number>) {
-            state.month = action.payload;
-        },
+        // setMonth(state, action: PayloadAction<number>) {
+        //     state.month = action.payload;
+        // },
     }
 })
 
-export const {setYear, setMonth, increaseMonth, decreaseMonth} = calendarSlice.actions
+export const {setYear, increaseMonth, decreaseMonth} = calendarSlice.actions
 export default calendarSlice.reducer;

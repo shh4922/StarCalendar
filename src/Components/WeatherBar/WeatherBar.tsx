@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { CSSProperties, ChangeEvent } from "react";
 import { setYear } from "../../redux/calendar";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { AppDispatch, RootState } from "../../redux/store";
@@ -7,15 +7,20 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import { useSelector } from "react-redux";
 import { setCity, setDistrict } from "../../redux/region";
 import { useWeather } from "../../apis/weather/query";
+import "./weatherBar.scss"
+import { ClipLoader, FadeLoader, SyncLoader } from "react-spinners";
+
+
+
 
 export default function WeatherBar() {
     const dispatch = useAppDispatch<AppDispatch>()
     const year = useAppSelector((state: RootState) => state.calendar.year);
     const city = useSelector((state: RootState) => state.region.city);
     const district = useSelector((state: RootState) => state.region.district);
-    
-    const { data: weathers } = useWeather()
-    console.log(weathers)
+
+    const { data: weathers, isLoading } = useWeather()
+    // console.log(weathers)
     const handleCityChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const city = event.target.value;
         dispatch(setCity(city))
@@ -29,44 +34,53 @@ export default function WeatherBar() {
     return (
         <section className="homeLeft">
             <div className="leftHead">
-                <button onClick={() => dispatch(setYear(year + 1))}>{"<"}</button>
-                <p>{year}</p>
-                <button onClick={() => dispatch(setYear(year - 1))}>{">"}</button>
+                <section className="yearSection">
+                    <button onClick={() => dispatch(setYear(year + 1))}>{"<"}</button>
+                    <p>{year}</p>
+                    <button onClick={() => dispatch(setYear(year - 1))}>{">"}</button>
+                </section>
+                <section className="regionSection">
+
+                    <select onChange={handleCityChange} value={city}>
+                        <option value="">선택하세요</option>
+                        {regionData.region.map(region => (
+                            <option key={region.city} value={region.city}>{region.city}</option>
+                        ))}
+                    </select>
+
+
+
+                    <select onChange={handleDistrictChange} value={district}>
+                        <option value="">선택하세요</option>
+                        {city &&
+                            regionData.region.find(region => region.city === city)?.districts.map(district => (
+                                <option key={district.district} value={district.district}>{district.district}</option>
+                            ))
+                        }
+                    </select>
+
+                </section>
             </div>
             <div className="leftBody">
-                <div>
-                    <label>
-                        시:
-                        <select onChange={handleCityChange } value={city}>
-                            <option value="">선택하세요</option>
-                            {regionData.region.map(region => (
-                                <option key={region.city} value={region.city}>{region.city}</option>
-                            ))}
-                        </select>
-                    </label>
+                {isLoading ? (
+                    <div className="loading">
+                        <SyncLoader
+                            loading={isLoading}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                        <p>날씨 지금 가고있어요~</p>
+                    </div>
 
-                    <label>
-                        구:
-                        <select onChange={handleDistrictChange} value={district}>
-                            <option value="">선택하세요</option>
-                            {city &&
-                                regionData.region.find(region => region.city === city)?.districts.map(district => (
-                                    <option key={district.district} value={district.district}>{district.district}</option>
-                                ))
-                            }
-                        </select>
-                    </label>
-                </div>
+                ) : (!city || !district) ? (
+                    <p className="requetSelect">지역을 설정하면 날씨를 확인 가능합니다!</p>
+                ) : (
+                    weathers && Object.keys(weathers).map((date) => (
+                        <WeatherCard key={date} fcstDate={date} weatherData={weathers[date]} />
+                    ))
+                )}
             </div>
-            <div className='weatherContent'>
-                {
-                    weathers && Object.keys(weathers).map((date) => {
-                        return (
-                            <WeatherCard fcstDate={date} weatherData={weathers[date]} />
-                        )
-                    })
-                }
-            </div>
+
         </section>
     )
 }

@@ -1,0 +1,72 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    p {
+        font-size: 2rem;
+        font-weight: bold
+    }
+}
+.homeLeft {
+    width: 30%;
+    background-color: #E88D67;
+    padding: 1rem;
+    margin-right: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+    .leftHead {
+        color: #006989;
+        margin-bottom: 3rem;
+        
+        p {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .yearSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 1rem;
+            button {
+                border: none;
+                outline: none;
+                background-color: transparent;
+                font-size: 2.4rem;
+                cursor: pointer;
+                color: #006989;
+            }
+            button:hover {
+                color: aqua;
+            }
+        }
+        
+        .regionSection {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            select {
+                border: 1px solid #006989;
+                outline: none;
+                font-size: 1.5rem;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+        }
+    }
+    .leftBody {
+        display: flex;
+        flex-direction: column;
+        
+        padding: 0 1rem;
+
+        .requetSelect {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
+}

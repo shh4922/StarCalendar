@@ -36,10 +36,11 @@ export const fetchWeather = async (): Promise<WeatherResponse> => {
 
     const BaseURL = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${import.meta.env.VITE_WEATHER_KEY}`
     const result = await axios.get<WeatherResponse>(BaseURL, {params})
+    
     return result.data
 }
 
-// fetch 후 데이터 분류
+// fetch 후 데이터 분류sd
 export function filterAndSortedWeather(datas: WeatherResponse): ClassifiedData {
     const filteredData = datas.response.body.items.item.filter(item => categoriesToFilter.includes(item.category));
     const classifiedData: ClassifiedData = {};
@@ -62,6 +63,7 @@ export function filterAndSortedWeather(datas: WeatherResponse): ClassifiedData {
         });
         classifiedData[date] = sortedDataByTime;
     }
+    console.log(classifiedData)
     return classifiedData
 }
 
@@ -103,7 +105,7 @@ function getNearestPastDateTime(): { base_date: string, base_time: string } {
     const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2);
     const day = ('0' + selectedDate.getDate()).slice(-2);
     const formattedDate = `${year}${month}${day}`;
-    console.log(formattedDate)
+    
     return {
         base_date: formattedDate,
         base_time: selectedSlot.formatted

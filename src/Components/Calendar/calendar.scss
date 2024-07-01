@@ -1,0 +1,127 @@
+.homeLight {
+    width: 70%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.calendar {
+    background-color: #F3F7EC;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    p {
+        font-size: 2.2rem;
+        text-align: center;
+        padding: 1rem 0;
+        color: #0F67B1;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .calendarMonth {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .calendarHead {
+        display: flex;
+        margin-bottom: 2rem;
+
+        div {
+            width: 14.28%;
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+
+    .calendarBody {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        p {
+            text-align: left;
+            font-size: 1.3rem;
+            padding: 1rem;
+            color: black;
+        }
+
+        .day {
+            width: 14.28%;
+            height: 150px;
+            padding: 2px;
+            text-align: left;
+            border: 1px solid lightgray;
+        }
+        .day:nth-child(7n + 1) { /* 각 행의 첫 번째 요소 */
+            border-left: none;
+        }
+        
+        .day:nth-child(7n) { /* 각 행의 마지막 요소 */
+            border-right: none;
+        }
+        
+        .day:nth-last-child(-n + 7) { /* 마지막 행의 모든 요소 */
+            border-bottom: none;
+        }
+        
+        
+        .currentMonth {
+            .moonRise {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                p {
+                    text-align: center;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    padding: 0;
+                }
+            }
+            .moonShape {
+                display: block;
+                margin: 0 auto;
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                margin-bottom: 1rem;
+            }
+            
+        }
+        
+
+        .prevDays {
+            p {
+                color: lightgray;
+            }
+        }
+
+        .nextDays {
+            p {
+                color: lightgray;
+            }
+
+        }
+    }
+}
+
+.resultInfo {
+    height: 200px;
+    background-color: #006989;
+    border-radius: 8px;
+}
+
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: skyblue;
+}
