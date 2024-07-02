@@ -34,7 +34,7 @@ export const fetchWeather = async (): Promise<WeatherResponse> => {
         ny : coordinator.y
     }
 
-    const BaseURL = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${import.meta.env.VITE_WEATHER_KEY}`
+    const BaseURL = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${import.meta.env.VITE_WEATHER_KEY}`
     const result = await axios.get<WeatherResponse>(BaseURL, {params})
     
     return result.data
