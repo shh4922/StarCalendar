@@ -1,5 +1,5 @@
-import { CSSProperties, ChangeEvent } from "react";
-import { setYear } from "../../redux/calendar";
+import { ChangeEvent } from "react";
+import { setCueentDate, setYear } from "../../redux/calendar";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { AppDispatch, RootState } from "../../redux/store";
 import regionData from "../../assets/region.json"
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { setCity, setDistrict } from "../../redux/region";
 import { useWeather } from "../../apis/weather/query";
 import "./weatherBar.scss"
-import { ClipLoader, FadeLoader, SyncLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 
 
 
@@ -20,7 +20,7 @@ export default function WeatherBar() {
     const district = useSelector((state: RootState) => state.region.district);
 
     const { data: weathers, isLoading } = useWeather()
-    // console.log(weathers)
+    
     const handleCityChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const city = event.target.value;
         dispatch(setCity(city))
@@ -31,13 +31,14 @@ export default function WeatherBar() {
         dispatch(setDistrict(districtName))
     };
 
+    
     return (
         <section className="homeLeft">
             <div className="leftHead">
                 <section className="yearSection">
-                    <button onClick={() => dispatch(setYear(year + 1))}>{"<"}</button>
-                    <p>{year}</p>
-                    <button onClick={() => dispatch(setYear(year - 1))}>{">"}</button>
+                    <button onClick={() => dispatch(setYear(year - 1))}>{"<"}</button>
+                    <p onClick={()=>dispatch(setCueentDate())}>{year}</p>
+                    <button onClick={() => dispatch(setYear(year + 1))}>{">"}</button>
                 </section>
                 <section className="regionSection">
 

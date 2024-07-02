@@ -3,33 +3,30 @@ import store, { RootState } from "../../redux/store"
 import { MoonRiseInfo, MoonShapeItem } from "./model.type"
 import { fetchMoonRise, fetchMoonShape } from "./apis"
 
-export function useMoonShape(){
+// export function useMoonShape(){
     
-    const currentState: RootState = store.getState()
-    const year = currentState.calendar.year
-    const month = currentState.calendar.month
-    const key = `${year}${month}`
+//     const currentState: RootState = store.getState()
+//     const year = currentState.calendar.year
+//     const month = currentState.calendar.month
+//     const key = `${year}${month}`
     
-    return useQuery<MoonShapeItem[]>({
-        queryKey: ['moonShape', key ],
-        queryFn: async () => {
-            const response = await fetchMoonShape()
-            const items: MoonShapeItem[] = response.response.body.items.item || []
-            return items
-        },
-        enabled: !!month,
-    })
-} 
+//     return useQuery<MoonShapeItem[]>({
+//         queryKey: ['moonShape', key ],
+//         queryFn: async () => {
+//             const response = await fetchMoonShape()
+//             const items: MoonShapeItem[] = response.response.body.items.item || []
+//             return items
+//         },
+//         enabled: !!month,
+//     })
+// } 
 
 export function useMoonData() {
     const currentState: RootState = store.getState()
     const year = currentState.calendar.year
     const month = (currentState.calendar.month + 1)
-    // const month = (currentState.calendar.month + 1).toString().padStart(2, '0') // 월을 2자리 문자열로 변환
     const key = `${year}${month}`
     
-    console.log(key)
-
     const [moonShapeQuery, moonRiseQuery] = useQueries({
         queries: [
             {

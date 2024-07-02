@@ -22,12 +22,12 @@ import rightHalf from "../../assets/MoonShapeImg/rightHalf.png"
 import leftHalf from "../../assets/MoonShapeImg/leftHalf.png"
 import fullMoon from "../../assets/MoonShapeImg/fullMoon.png"
 import newMoon from "../../assets/MoonShapeImg/newMoon.png"
+import dummyMoon from "../../assets/MoonShapeImg/dummyMoon.png"
 
 function Calendar() {
     const dispatch = useAppDispatch<AppDispatch>()
     const year = useSelector((state: RootState) => state.calendar.year);
     const month = useSelector((state: RootState) => state.calendar.month);
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
@@ -51,32 +51,43 @@ function Calendar() {
         { min: 22.26, max: 23.85, phase: left4 },
         { min: 23.85, max: 25.44, phase: left3 },
         { min: 25.44, max: 27.03, phase: left2 },
-        { min: 27.03, max: 29.53, phase: left1 }
+        { min: 27.03, max: 30.00, phase: left1 }
     ];
-    
+    const getCurrentDate = () => {
+        const today = new Date();
+        return {
+            year: today.getFullYear(),
+            month: today.getMonth(),
+            date: today.getDate()
+        };
+    };
     function getMoonPhase(lunAge: string) {
         const age = parseFloat(lunAge);
         const phase = moonPhases.find(phase => age >= phase.min && age < phase.max);
-        return phase ? phase.phase : '';
+        return phase ? phase.phase : dummyMoon;
     };
 
     function createCalendarGrid() {
         let days = [];
+        const currentDate = getCurrentDate();
 
         // 이전달의 총 일수
         const prevDaysInMonth = new Date(year, month, 0).getDate();
+
         // 이전달 날짜 추가
         for (let i = firstDayOfMonth - 1; i >= 0; i--) {
-            days.push(<div className="day prevDays"><p>{prevDaysInMonth - i}</p></div>);
+            days.push(<div key={`prev${i}`} className="day prevDays"><p>{prevDaysInMonth - i}</p></div>);
         }
 
         // 현재 월 날짜 추가
         for (let d = 1; d <= daysInMonth; d++) {
+            const isToday = (year === currentDate.year && month === currentDate.month && d === currentDate.date);
+            const dayClassName = `day currentMonth ${isToday ? 'today' : ''}`;
             days.push(
-                <div key={d} className="day currentMonth">
+                <div key={d} className={dayClassName}>
                     {moonShape && moonRise ? (
                         <>
-                            <p>{d}</p>
+                            <p >{d}</p>
                             <img className='moonShape' src={getMoonPhase(moonShape[d - 1].lunAge)} alt={`Moon phase for day ${d}`} />
                             <div className="moonRise">
                                 <p>월출: <strong>{moonRise[d - 1].moonrise}</strong></p>
@@ -96,45 +107,38 @@ function Calendar() {
         }
         for (let i = 1; i < 7; i++) {
             if (days.length % 7 !== 0) {
-                days.push(<div className="day nextDays"><p>{i}</p></div>);
+                days.push(<div key={`next${i}`} className="day nextDays"><p>{i}</p></div>);
             } else {
                 break
             }
         }
         return days;
     };
-
+    
     return (
-        <section className="homeLight">
-            <div className="calendar">
-                <div className="calendarMonth">
-                    <p onClick={() => dispatch(decreaseMonth())}>{"<"}</p>
-                    <p>{month + 1}월</p>
-                    <p onClick={() => dispatch(increaseMonth())}>{">"}</p>
-                </div>
-
-                <div className="calendarHead">
-                    <div className="red">Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div className="blue">Sat</div>
-                </div>
-
-                <div className="calendarBody">
-                    {
-                        createCalendarGrid()
-                    }
-                </div>
+        <div className="calendar">
+            <div className="calendarMonth">
+                <p onClick={() => dispatch(decreaseMonth())}>{"<"}</p>
+                <p>{month + 1}월</p>
+                <p onClick={() => dispatch(increaseMonth())}>{">"}</p>
             </div>
 
-            <div className="resultInfo">
-                <p>현재 <strong>"광주"</strong> 의 관측가능 날짜는</p>
-                <p>29, 30, 31 로 예상됩니다.</p>
+            <div className="calendarHead">
+                <div className="red">Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div className="blue">Sat</div>
             </div>
-        </section>
+
+            <div className="calendarBody">
+                {
+                    createCalendarGrid()
+                }
+            </div>
+        </div>
     )
 }
 

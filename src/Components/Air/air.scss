@@ -1,0 +1,32 @@
+.resultInfo {
+    display: flex;
+    justify-content: space-around;
+    background-color: #006989;
+    border-radius: 8px;
+    .airBox {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        max-width: 450px;
+        
+        .airDate {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+        .infoResults {
+            display: flex;
+            flex-wrap: wrap;
+            .info {
+                font-size: 1.1rem;
+                padding: 1rem;
+                color: #F3F7EC;
+                .airResult {
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

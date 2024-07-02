@@ -1,0 +1,16 @@
+footer {
+    display: flex;
+    border-top: 1px solid lightgray;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 2rem 10rem;
+    background-color: #F3F7EC;
+    div {
+        // background-color: red;
+        p {
+            text-align: start;
+        }
+        
+    }
+}

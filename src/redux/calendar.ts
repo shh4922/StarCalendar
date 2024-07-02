@@ -38,11 +38,13 @@ export const calendarSlice = createSlice({
                 state.month = newMonth
             }
         },
-        // setMonth(state, action: PayloadAction<number>) {
-        //     state.month = action.payload;
-        // },
+        setCueentDate(state) {
+            const date = new Date()
+            state.year = date.getFullYear(),
+            state.month = date.getMonth()
+        }
     }
 })
 
-export const {setYear, increaseMonth, decreaseMonth} = calendarSlice.actions
+export const {setYear, increaseMonth, decreaseMonth, setCueentDate} = calendarSlice.actions
 export default calendarSlice.reducer;

@@ -1,12 +1,6 @@
-.homeLight {
-    width: 70%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
+.today {
+    background-color: #0F67B1;
 }
-
 .calendar {
     background-color: #F3F7EC;
     border-radius: 8px;
@@ -111,17 +105,51 @@
     }
 }
 
-.resultInfo {
-    height: 200px;
-    background-color: #006989;
-    border-radius: 8px;
-}
-
+// .resultInfo {
+//     display: flex;
+//     justify-content: space-around;
+//     // padding: 1rem;
+//     // background-color: #0F67B1;
+//     background-color: #006989;
+//     border-radius: 8px;
+    
+//     .airBox {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: flex-start;
+//         padding: 1rem;
+//         max-width: 450px;
+        
+//         .airDate {
+//             font-size: 2rem;
+//             font-weight: bold;
+//             color: #f1f1f1;
+//         }
+//         .infoResults {
+//             display: flex;
+//             flex-wrap: wrap;
+//             .info {
+//                 font-size: 1.1rem;
+//                 padding: 1rem;
+//                 color: #F3F7EC;
+//                 .airResult {
+//                     font-size: 1.3rem;
+//                     font-weight: bold;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 .red {
     color: red;
 }
-
+.orange {
+    color: orange;
+}
+.green {
+    color: greenyellow
+}
 .blue {
     color: skyblue;
 }
