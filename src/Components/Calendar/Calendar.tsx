@@ -31,7 +31,7 @@ function Calendar() {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-    const { isLoading, isError, moonShape, moonRise } = useMoonData()
+    const { moonShape, moonRise } = useMoonData()
 
     const moonPhases = [
         { min: 0, max: 1.59, phase: newMoon },

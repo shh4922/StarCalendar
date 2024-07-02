@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import "./app.scss"
 import { Route, Routes } from 'react-router-dom'
 import Header from './Components/Header/Header'
