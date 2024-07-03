@@ -12,14 +12,20 @@ export const fetchAir = async (): Promise<AirResponse> => {
         informCode: "PM10"
     }
     const result = await axios.get(url, { params })
+    console.log(result.data)
     return result.data
 }
 
 export function getCurrentDate():string {
     const date = new Date()
+    // 6시 이전이면 이전날로 계산해서 보내도록 함
+    if (date.getHours() < 6) {
+        date.setDate(date.getDate() - 1);
+    }
+
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2,'0');
-    const formattedDate = `${year}-${month}-${day}`    
+    const formattedDate = `${year}-${month}-${day}`
     return formattedDate
 }
