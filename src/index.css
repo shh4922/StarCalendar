@@ -1,8 +1,10 @@
+
 * {
   margin: 0;
   padding: 0;
   text-align: center;
   box-sizing: border-box;
+  
 }
 
 html {
@@ -11,7 +13,15 @@ html {
   width: 100%;
 }
 
+body {
+  font-family: 'c';
+}
 a {
   text-decoration: none;
 }
 
+@font-face {
+  font-family: 'c';
+  src: url('./font/starfont.ttf');
+  font-display: swap;
+}

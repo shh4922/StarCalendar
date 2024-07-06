@@ -83,12 +83,17 @@
         background-color: transparent;
         border-radius: 0;
         box-shadow: none;
+        color: #E88D67;
+        border-bottom: 1px solid lightgray;
         .leftHead {
             width: 100%;
             flex: 1;
+            color: #E88D67;
             .yearSection {
                 width: 100%;
-
+                button {
+                    color: #E88D67;
+                }
             }
             .regionSection {
                 gap: 1rem;
