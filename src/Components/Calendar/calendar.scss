@@ -105,42 +105,6 @@
     }
 }
 
-// .resultInfo {
-//     display: flex;
-//     justify-content: space-around;
-//     // padding: 1rem;
-//     // background-color: #0F67B1;
-//     background-color: #006989;
-//     border-radius: 8px;
-    
-//     .airBox {
-//         display: flex;
-//         flex-direction: column;
-//         align-items: flex-start;
-//         padding: 1rem;
-//         max-width: 450px;
-        
-//         .airDate {
-//             font-size: 2rem;
-//             font-weight: bold;
-//             color: #f1f1f1;
-//         }
-//         .infoResults {
-//             display: flex;
-//             flex-wrap: wrap;
-//             .info {
-//                 font-size: 1.1rem;
-//                 padding: 1rem;
-//                 color: #F3F7EC;
-//                 .airResult {
-//                     font-size: 1.3rem;
-//                     font-weight: bold;
-//                 }
-//             }
-//         }
-//     }
-// }
-
 .red {
     color: red;
 }
@@ -152,4 +116,56 @@
 }
 .blue {
     color: skyblue;
+}
+
+@media screen and (max-width:"720px") {
+    .calendar {
+        border-radius: 0px;
+        margin-bottom: 2rem;
+        box-shadow: none;
+        .calendarHead {
+            div {
+                width: 14.28%;
+                font-size: 1.4rem;
+                text-align: center;
+            }
+        }
+        .calendarBody {      
+            p {
+                text-align: left;
+                font-size: 1rem;
+                padding: 0;
+                color: black;
+            }
+            .day {
+                width: 14.28%;
+                min-height: 100px;
+                height: auto;
+                
+            }      
+            .currentMonth {
+                .moonRise {
+                    display: flex;
+                    flex-direction: column;
+                    p {
+                        text-align: center;
+                        font-size: 1.1rem;
+                        font-weight: 400;
+                        padding: 0;
+                    }
+                }
+                .moonShape {
+                    display: block;
+                    width: 25px;
+                    height: 25px;
+                    object-fit: cover;
+                    
+                }
+                
+            }
+            
+
+        }
+    }
+    
 }

@@ -13,3 +13,16 @@
     flex-direction: column;
     border-radius: 8px;
 }
+
+@media screen and (max-width:"720px") {
+    .home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #F3F7EC;
+    }
+    .homeLight {
+        width: 100%;
+    }
+    
+}

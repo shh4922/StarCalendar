@@ -30,3 +30,21 @@
         }
     }
 }
+
+@media screen and (max-width:"720px") {
+    .resultInfo {
+        border-radius: 0px;
+        background-color: transparent;
+        .airBox {
+            .airDate {
+                color: #006989;
+            }
+            .infoResults {
+                .info {
+                    color: #E88D67;
+                }
+            }
+            
+        }
+    }
+}

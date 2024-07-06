@@ -7,18 +7,42 @@
         max-width: 1920px;
         margin: 0 auto;
         gap: 5rem;
-        
-        
+        width: 100%;
+        main {
+            flex: 1;
+            min-width: 1000px;
+        }
+
         .ads {
             width: 150px;
             background-color: gray;
             visibility: hidden;
         }
-    
-        main {
-            flex: 1;
-            min-width: 1000px;
-        }
     }
 }
 
+@media screen and (max-width:"720px") {
+    .App {
+        width: 100%;
+        .content {
+            display: block;
+            margin: 0;
+            gap: 0;
+            width: 100%;
+            background-color: red;
+            
+            main {
+                min-width: 100px;
+                max-width: 720px;
+                
+            }
+    
+            .ads {
+                display: none;
+                
+            }
+        }
+    }
+    
+    
+}

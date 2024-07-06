@@ -8,8 +8,10 @@
 html {
   font-size: 10px;
   background-color: #F3F7EC;
+  width: 100%;
 }
 
 a {
   text-decoration: none;
 }
+

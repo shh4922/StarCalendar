@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 5rem;
+
     .date {
         font-size: 1.7rem;
         font-weight: bold;
@@ -14,9 +15,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        
         gap: 1rem;
+
         .weather {
-            
             p {
                 font-size: 1.2rem;
                 font-weight: 600;
@@ -29,5 +31,22 @@
             }
         }
 
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .weatherCard {
+        margin-bottom: 2rem;
+        .weatherContent {
+            flex-wrap: nowrap; 
+            overflow-x: auto; 
+            
+            .weather {
+                flex: 0 0 auto;
+            }
+        }
+        .weatherContent::-webkit-scrollbar {
+            display: none;
+        }
     }
 }

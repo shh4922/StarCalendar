@@ -9,17 +9,17 @@ function App() {
     <div className='App'>
       <Header />
       <div className='content'>
-        <div className='ads'>
+        {/* <div className='ads'>
           광고
-        </div>
+        </div> */}
         <main>
           <Routes>
             <Route path='/' element={<Index />} />
           </Routes>
         </main>
-        <div className='ads'>
+        {/* <div className='ads'>
           광고
-        </div>
+        </div> */}
       </div>
       <Footer />
     </div>

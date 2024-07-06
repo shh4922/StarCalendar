@@ -6,6 +6,7 @@ header {
     align-items: center;
     // background-color: antiquewhite;
     margin-bottom: 1rem;
+    
     a {
         font-size: 3.2rem;
         color: #006989;
@@ -15,4 +16,17 @@ header {
 
         color: #005C78;
     }
+}
+
+@media screen and (max-width:"720px") {
+    header {
+        height: auto;
+        padding: 1rem 0;
+        border-bottom: 1px solid lightgrey;
+        
+        a {
+            font-size: 2.4rem;
+        }
+    }
+    
 }
